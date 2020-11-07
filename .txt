@@ -1,0 +1,8 @@
+/---->
+PALETTE
+#f4abc4 pinkish
+blues-
+#595b83 lightest
+#333456 darker
+#060930 darkest 
+<----/

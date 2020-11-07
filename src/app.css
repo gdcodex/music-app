@@ -1,0 +1,26 @@
+body{
+    overflow: hidden;
+}
+.control,.time{
+    width: 50vw;
+    margin: auto;
+    transform: translateY(80vh);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+}
+.time{
+    transform: translateY(75vh);
+}
+.volume{
+    width: 20vw;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+   
+}
