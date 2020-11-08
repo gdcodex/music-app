@@ -3,9 +3,9 @@ import jsonpAdapter from 'axios-jsonp'
 
 
 export const suggest = (term) => {
-    const GOOGLE_AC_URL  = `https://clients1.google.com/complete/search`;
+    const URL  = `https://clients1.google.com/complete/search`;
     return axios({
-      url: GOOGLE_AC_URL,
+      url: URL,
       adapter: jsonpAdapter,
       params: {
         client: "youtube",
@@ -15,10 +15,9 @@ export const suggest = (term) => {
       }
     })
     .then((res) => {
-      console.log("jsonp results >> ", res);
       if (res.status !== 200) {
         throw Error("Suggest API not 200!");
       }
-      return 1;
+      return res.data[1].map((i) => i[0]);
     })
   }

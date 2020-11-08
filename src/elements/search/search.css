@@ -1,0 +1,11 @@
+#result, #suggestion{
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+#result{
+    background-color: cadetblue;
+}
+#suggestion{
+    background-color: bisque;
+}
