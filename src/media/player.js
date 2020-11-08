@@ -13,21 +13,19 @@ function Player() {
   const audio = useRef();
   const [audS, setaudS] = React.useState(play);
   const [currentTime, setcurrentTime] = React.useState(0);
-  const [volume, setvolume] = React.useState(0);
+  const [volume, setvolume] = React.useState(100);
   const [Time, setTime] = React.useState(0);
-  const [load, setload] = React.useState(false);
 
   const sliderChange = (value, newValue) => {
     audio.current.currentTime = newValue;
     setcurrentTime(newValue);
   };
   const volumeChange = (value, newValue) => {
-    audio.current.volume = newValue;
+    audio.current.volume = newValue/100;
     setvolume(newValue);
   };
   const clickControl = () => {
     // console.log(audio.current.duration);
-     console.log(audio.current.volume);
     setTime(audio.current.duration);
     if (audio.current.duration > 0 && audio.current.paused) {
       setaudS(pause);
@@ -37,10 +35,10 @@ function Player() {
       audio.current.pause();
     }
   };
-  // useEffect(()=>{
-  //     setvolume(audio.current.volume)
-  //     console.log(audio.current.volume)
-  // },[])
+  useEffect(()=>{
+      setvolume(audio.current.volume)
+      console.log(audio.current.volume)
+  },[])
   return (
    <>
       <div className="time">
@@ -65,7 +63,6 @@ function Player() {
           <Slider
             color="secondary"
             value={volume}
-            max={2}
             onChange={volumeChange}
             style={{ width: "100px" }}
             aria-labelledby="continuous-slider"
@@ -74,7 +71,6 @@ function Player() {
       </div>
       <audio
         ref={audio}
-        onPlay={()=>setload(true)}
         onEnded={()=> setaudS(play)}
         onTimeUpdate={() => {
           setcurrentTime(audio.current.currentTime);
