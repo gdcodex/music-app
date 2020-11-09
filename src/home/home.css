@@ -1,0 +1,46 @@
+.top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    height: 60px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: center;
+    background-color: rgb(24, 23, 23);
+    z-index: 5;
+}
+.top-first{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.top h2{
+    color: white;
+}
+#reverb-img{
+    margin-left: 5px;
+    margin-top: 4px;
+    width: 20px;
+}
+.bottom{
+    width: 100vw;
+    background-color: white;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0vh;
+    padding: 10px 0;
+    z-index: 5;
+}
+.bottom-section{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

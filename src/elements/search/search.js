@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from "react";
+import {Link} from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import React, { useEffect, useState } from "react";
 import searchY from "../../endpoints/searchapi";
 import { suggest } from "../../endpoints/suggest";
 import "./search.css";
@@ -67,7 +68,9 @@ function Search() {
   return (
     <div key="anh" className="search-container">
       <section  className="text-area">
+      <Link to="/">
         <ArrowBackIcon fontSize="default" color="secondary"  />
+      </Link>
         <TextField
           className={classes.root}
           id="standard-basic"
