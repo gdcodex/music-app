@@ -38,11 +38,11 @@ function Homebody() {
   }, []);
 
   return <div className="home-body-chart">
-      <Chart data={homePlaylist.pop}/>
-      <Chart data={homePlaylist.topbolly}/>
-      <Chart data={homePlaylist.hiphop}/>
-      <Chart data={homePlaylist.soulfullBolly}/>
-      <Chart data={homePlaylist.edm}/>
+      <Chart data={homePlaylist.pop} title="Top Pop"/>
+      <Chart data={homePlaylist.topbolly} title="Top Bollywood"/>
+      <Chart data={homePlaylist.hiphop} title="Top Hiphop"/>
+      <Chart data={homePlaylist.soulfullBolly} title="Soulful Bollywood"/>
+      <Chart data={homePlaylist.edm} title="EDM"/>
   </div>;
 }
 

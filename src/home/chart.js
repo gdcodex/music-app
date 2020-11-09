@@ -13,10 +13,12 @@ const useStyles = makeStyles({
       margin:"15px"
     }
   });
-function Chart({data}) {
+function Chart({data,title}) {
     const classes = useStyles();
     return (
         <div className="chart">
+        {data && <h3 className="chart-title">{title}</h3>}
+        <div className="chart-body">
         {data && data.map((e,i)=>
              <Card key={e+i} className={classes.root}>
       <CardActionArea>
@@ -36,6 +38,7 @@ function Chart({data}) {
       </CardActionArea>
     </Card> 
         )}
+        </div>
         </div>
     )
 }
