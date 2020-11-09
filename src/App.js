@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import Search from "./elements/search/search";
 import Player from "./media/player";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -9,10 +9,13 @@ import { PlayerContext } from "./endpoints/context";
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
+  const [trackCurrent, settrackCurrent] = useState(null);
   return (
     <PlayerContext.Provider value={{
       currentlyPlaying,
-      setcurrentlyPlaying
+      setcurrentlyPlaying,
+      trackCurrent,
+      settrackCurrent
     }}>
     <ThemeProvider theme={theme}>
     <Router>

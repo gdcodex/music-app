@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -6,6 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { play, pause, next, prev } from "../elements/uielements/controls";
 import "./player.css";
 import Playercenter from "./playercenter";
+import { PlayerContext } from '../endpoints/context';
 import SliderControl from "./slider";
 import Upnext from "./upnext";
 import axios from 'axios';
@@ -19,14 +20,16 @@ const useStyles = makeStyles((theme) => ({
 function Player() {
   const classes = useStyles();
   const videoId = useParams().pid;
+  const currentPlay = useContext(PlayerContext);
   const audio = useRef();
-  const [audS, setaudS] = React.useState(play);
+  const [audS, setaudS] = React.useState(pause);
   const [currentTime, setcurrentTime] = React.useState(0);
   const [volume, setvolume] = React.useState(100);
   const [Time, setTime] = React.useState(0);
-  const [track, settrack] = React.useState(null);
+  // const [track, settrack] = React.useState(null);
+
   useEffect(() => {
-    console.log(videoId)
+  
     var config = {
       method: 'get',
       url: `http://localhost:5000/song/?id=${videoId}`,
@@ -35,15 +38,13 @@ function Player() {
     
     axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      settrack(response.data);
+      // console.log(JSON.stringify(response.data));
+      currentPlay.settrackCurrent(response.data);
     })
     .catch(function (error) {
       console.log(error);
     });
-  }, []);
- 
-
+  }, [videoId]);
   const sliderChange = (value, newValue) => {
     audio.current.currentTime = newValue;
     setcurrentTime(newValue);
@@ -53,7 +54,6 @@ function Player() {
     setvolume(newValue);
   };
   const clickControl = () => {
-    console.log(track)
     setTime(audio.current.duration);
     if (audio.current.duration > 0 && audio.current.paused) {
       setaudS(pause);
@@ -65,14 +65,14 @@ function Player() {
   };
   return (
     <>
-      {!track && (
+      {!currentPlay.trackCurrent && (
         <Backdrop className={classes.backdrop} open={true}>
           <CircularProgress color="secondary" />
         </Backdrop>
       )}
-      {track && (
+      {currentPlay.trackCurrent && (
         <main className="player-body">
-          <Playercenter videoId={videoId}/>
+          <Playercenter />
           <SliderControl
             currentTime={currentTime}
             sliderChange={sliderChange}
@@ -86,15 +86,16 @@ function Player() {
           />
           <audio
             ref={audio}
+            autoPlay
             onEnded={() => setaudS(play)}
             onTimeUpdate={() => {
               setcurrentTime(audio.current.currentTime);
             }}
           >
-            <source src={track} type="audio/mpeg" />
+            <source src={currentPlay.trackCurrent} type="audio/mpeg" />
           </audio>
           <div className="upnext">
-            <Upnext />
+            <Upnext videoId={videoId} audio={audio}/>
           </div>
         </main>
       )}
