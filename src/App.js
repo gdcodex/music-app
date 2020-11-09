@@ -9,9 +9,6 @@ import { PlayerContext } from "./endpoints/context";
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
-  useEffect(() => {
-   console.log(currentlyPlaying);
-  });
   return (
     <PlayerContext.Provider value={{
       currentlyPlaying,

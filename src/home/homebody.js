@@ -1,9 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import searchapi from "../endpoints/searchapi";
 import Chart from "./chart";
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 10,
+      color: '#fff',
+    }
+  }));
 
 function Homebody() {
-  const [homePlaylist, sethomePlaylist] = useState({});
+    const classes = useStyles();
+  const [homePlaylist, sethomePlaylist] = useState(null);
   const playlistId = {
     pop: "PLDcnymzs18LU4Kexrs91TVdfnplU3I5zs",
     topbolly: "PLcRN7uK9CFpPkvCc-08tWOQo6PAg4u0lA",
@@ -38,11 +48,21 @@ function Homebody() {
   }, []);
 
   return <div className="home-body-chart">
+  {   !homePlaylist &&
+      <Backdrop className={classes.backdrop} open={true}>
+        <CircularProgress color="secondary" />
+      </Backdrop>}
+  {
+      homePlaylist &&
+      <>
       <Chart data={homePlaylist.pop} title="Top Pop"/>
       <Chart data={homePlaylist.topbolly} title="Top Bollywood"/>
       <Chart data={homePlaylist.hiphop} title="Top Hiphop"/>
       <Chart data={homePlaylist.soulfullBolly} title="Soulful Bollywood"/>
-      <Chart data={homePlaylist.edm} title="EDM"/>
+      <Chart data={homePlaylist.edm} title="EDM" />
+      </>
+  }
+    
   </div>;
 }
 

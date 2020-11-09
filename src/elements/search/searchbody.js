@@ -28,7 +28,7 @@ function Searchbody({ Suggestlist, Songlist, setsong, sClickHandler }) {
   const history = useHistory()
   const classes = useStyles();
   const videoIdhandler = (e) => {
-    currentPlay.setcurrentlyPlaying(e.id.videoId);
+    currentPlay.setcurrentlyPlaying(e.snippet.thumbnails.high.url);
     history.push(`/player/${e.id.videoId}`)
   };
   return (
