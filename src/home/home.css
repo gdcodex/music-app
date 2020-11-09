@@ -6,11 +6,13 @@
     width: 100vw;
     height: 60px;
     margin: auto;
+ 
     display: flex;
     align-items: center;
     justify-content: space-between;
     justify-content: center;
     background-color: rgb(24, 23, 23);
+    background-color: #212121;
     z-index: 5;
 }
 .top-first{
@@ -28,7 +30,6 @@
 }
 .bottom{
     width: 100vw;
-    background-color: white;
     background-color: #212121;
     display: flex;
     align-items: center;
@@ -44,3 +45,14 @@
     align-items: center;
     justify-content: space-around;
 }
+
+.chart{
+   
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    transform: translateY(90px);
+}
+.chart::-webkit-scrollbar {
+    display: none;
+  }

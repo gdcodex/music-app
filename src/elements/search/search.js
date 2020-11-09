@@ -4,6 +4,8 @@ import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import searchY from "../../endpoints/searchapi";
 import { suggest } from "../../endpoints/suggest";
 import "./search.css";
@@ -18,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "large",
     },
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 10,
+    color: '#fff',
+  }
 }));
 function Search() {
   const classes = useStyles();
@@ -25,6 +31,7 @@ function Search() {
   const [song, setsong] = useState("");
   const [Songlist, setSonglist] = useState(null);
   const [Suggestlist, setSuggestlist] = useState(null);
+  const [progress, setprogress] = useState(false);
   const changeHandler = async (e) => {
     e.persist();
     let value = e.target.value;
@@ -34,6 +41,7 @@ function Search() {
   };
   const clickHandler = () => {
     console.log(song);
+    setprogress(true)
     searchY
       .get("/search", {
         params: {
@@ -42,10 +50,11 @@ function Search() {
         },
       })
       .then((res) => {
+        setprogress(false)
         setSonglist(res.data.items);
         console.log(res.data.items);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setprogress(false));
   };
   const sClickHandler = (e) => {
     console.log(song);
@@ -94,12 +103,18 @@ function Search() {
           <SearchIcon fontSize="default" />
         </Button>
       </section>
+      
+        <Backdrop className={classes.backdrop} open={progress}>
+        <CircularProgress color="secondary" />
+      </Backdrop>
+     
       <Searchbody
         Suggestlist={Suggestlist}
         Songlist={Songlist}
         setsong={setsong}
         sClickHandler={sClickHandler}
       />
+      
     </div>
   );
 }
