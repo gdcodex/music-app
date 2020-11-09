@@ -63,7 +63,7 @@ function Search() {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
-    if (Songlist) document.getElementById("suggestion").style.opacity = 0;
+    if (Songlist) document.getElementById("suggestion").style.zIndex = -1;
   }, [Songlist]);
   return (
     <div key="anh" className="search-container">
@@ -82,7 +82,7 @@ function Search() {
           }}
           onBlur={() => {
             document.getElementById("suggestion").style.opacity = 0;
-            document.getElementById("suggestion").style.pointerEvents = "none";
+           
           
           }}
           value={song}
