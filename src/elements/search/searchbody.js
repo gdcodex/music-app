@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
     maxWidth: "100vw",
-    backgroundColor: " rgb(41, 39, 39)",
-    color: "seashell",
-    marginLeft: "2%",
+    backgroundColor: " rgb(24, 23, 23)",
+    color: "#8b8a8a",
+    marginLeft: "5%",
   },
   inline: {
     display: "inline",
@@ -33,6 +33,7 @@ function Searchbody({ Suggestlist, Songlist, setsong, sClickHandler }) {
                 <ListItem
                   key={e + i}
                   alignItems="flex-start"
+                  style={{cursor:"pointer"}}
                   onClick={() => {
                     setsong(e);
                     return sClickHandler(e);
@@ -53,7 +54,7 @@ function Searchbody({ Suggestlist, Songlist, setsong, sClickHandler }) {
           {Songlist &&
             Songlist.map((e, i) => (
               <>
-                <ListItem key={e + i} alignItems="flex-start">
+                <ListItem key={e + i} style={{cursor:"pointer"}} alignItems="flex-start">
                   <ListItemAvatar>
                     <Avatar alt="img" src={e.snippet.thumbnails.medium.url} />
                   </ListItemAvatar>

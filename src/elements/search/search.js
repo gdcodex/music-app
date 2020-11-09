@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(-0.25),
       width: "80vw",
-      color: "seashell",
+      color: "#8b8a8a",
       paddingTop: "7px",
       fontSize: "large",
     },
@@ -62,19 +62,25 @@ function Search() {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
-    if (Songlist) document.getElementById("suggestion").style.zIndex = -2;
+    if (Songlist) document.getElementById("suggestion").style.opacity = 0;
   }, [Songlist]);
   return (
     <div key="anh" className="search-container">
       <section  className="text-area">
-        <ArrowBackIcon fontSize="default" color="secondary" />
+        <ArrowBackIcon fontSize="default" color="secondary"  />
         <TextField
           className={classes.root}
           id="standard-basic"
           color="secondary"
           autoFocus={true}
           onFocus={() => {
+            document.getElementById("suggestion").style.opacity = 1;
             document.getElementById("suggestion").style.zIndex = 2;
+          }}
+          onBlur={() => {
+            document.getElementById("suggestion").style.opacity = 0;
+            document.getElementById("suggestion").style.pointerEvents = "none";
+          
           }}
           value={song}
           onChange={changeHandler}

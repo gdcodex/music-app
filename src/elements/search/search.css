@@ -8,6 +8,7 @@
     height: 100vh;
     overflow-X: hidden;
     background-color: rgb(41, 39, 39);
+    background-color: rgb(24, 23, 23);
     display: flex;
     flex-direction: column;
 }
