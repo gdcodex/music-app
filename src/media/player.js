@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import VolumeUp from "@material-ui/icons/VolumeUp";
-import Slider from "@material-ui/core/Slider";
-import {
-  play,
-  pause,
-  next,
-  prev
-} from "../elements/uielements/controls";
+import React, {  useRef } from "react";
+import { play, pause, next, prev } from "../elements/uielements/controls";
 import "./player.css";
+import Playercenter from "./playercenter";
+import SliderControl from "./slider";
+import Upnext from "./upnext";
 
 function Player() {
   const audio = useRef();
@@ -21,11 +17,10 @@ function Player() {
     setcurrentTime(newValue);
   };
   const volumeChange = (value, newValue) => {
-    audio.current.volume = newValue/100;
+    audio.current.volume = newValue / 100;
     setvolume(newValue);
   };
   const clickControl = () => {
-    // console.log(audio.current.duration);
     setTime(audio.current.duration);
     if (audio.current.duration > 0 && audio.current.paused) {
       setaudS(pause);
@@ -35,53 +30,41 @@ function Player() {
       audio.current.pause();
     }
   };
-  useEffect(()=>{
-      setvolume(audio.current.volume)
-      console.log(audio.current.volume)
-  },[])
   return (
-   <>
-      <div className="time">
-        <Slider
-          color="secondary"
-          value={currentTime}
-          max={Time}
-          onChange={sliderChange}
-          style={{ width: "800px" }}
-          aria-labelledby="continuous-slider"
+    <>
+      <main className="player-body">
+        <Playercenter />
+        <SliderControl
+          currentTime={currentTime}
+          sliderChange={sliderChange}
+          Time={Time}
+          prev={prev}
+          next={next}
+          volume={volume}
+          volumeChange={volumeChange}
+          clickControl={clickControl}
+          audS={audS}
         />
-      </div>
-
-      <div className="control">
-        <div className="prev">{prev}</div>
-        <div className="media-control" onClick={clickControl}>
-          {audS}
-        </div>
-        <div className="next">{next}</div>
-        <div className="volume">
-          <VolumeUp color="secondary" />
-          <Slider
-            color="secondary"
-            value={volume}
-            onChange={volumeChange}
-            style={{ width: "100px" }}
-            aria-labelledby="continuous-slider"
+        <audio
+          ref={audio}
+          onEnded={() => setaudS(play)}
+          onTimeUpdate={() => {
+            setcurrentTime(audio.current.currentTime);
+          }}
+        >
+          <source
+            src="https://r5---sn-5hnekn7k.googlevideo.com/videoplayback?expire=1604905326&ei=DpWoX5vIJZbqgAfswZKQCw&ip=185.73.39.44&id=o-AJSTfL6jmLKj9iWtnf39M8GHyhSFLiPPyPaQUIZe4D0s&itag=140&source=youtube&requiressl=yes&mh=v6&mm=31%2C29&mn=sn-5hnekn7k%2Csn-5hne6ns6&ms=au%2Crdu&mv=m&mvi=5&pl=23&initcwndbps=103750&vprv=1&mime=audio%2Fmp4&gir=yes&clen=3206163&dur=198.066&lmt=1570268711560993&mt=1604883638&fvip=5&keepalive=yes&c=WEB&txp=5531432&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIhALJv_SY6CxdiTaQrGXUah3SS4bfUcQ9W4Jv-EvDPuFUsAiAE6b3iTQIvDmc8GT6D4xltzinJPHXJ_Df6zzmtUqJ52g%3D%3D&ratebypass=yes&sig=AOq0QJ8wRAIgCB-PhRKTMDpYjZH4iVGp5vLNcMke69L3FUbIC3mQ2toCIGFAkfW3_qrbX_Np2n4xNrupZYvM5VypZIXhJEKGQ9i4"
+            type="audio/mpeg"
           />
+        </audio>
+        <div className="upnext">
+          {/* <h4 className="upnext-heading">Upnext</h4>
+          <h4 className="upnext-heading">Up</h4> */}
+          <Upnext/>
         </div>
-      </div>
-      <audio
-        ref={audio}
-        onEnded={()=> setaudS(play)}
-        onTimeUpdate={() => {
-          setcurrentTime(audio.current.currentTime);
-        }}
-      >
-        <source
-          src="https://r4---sn-5hne6nsd.googlevideo.com/videoplayback?expire=1604855347&ei=09GnX5G9Bsy51wbL8oeYDw&ip=185.73.39.44&id=o-ACug7_QJ2XE5Ct2ihpQmM1ZN-TTLHOTDYglho54Y6j_8&itag=140&source=youtube&requiressl=yes&mh=kU&mm=31%2C29&mn=sn-5hne6nsd%2Csn-5hnednlk&ms=au%2Crdu&mv=m&mvi=4&pl=23&initcwndbps=82500&vprv=1&mime=audio%2Fmp4&gir=yes&clen=3148708&dur=194.513&lmt=1604790040931141&mt=1604833592&fvip=4&keepalive=yes&c=WEB&txp=5531432&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAKv-xvM2lHJ_xanujCmAVByXtJtLDry1c0oSLNkoeFxTAiB9yvEpLAws_Qxbtlht2oUxZlR0oXF8WK5OVxPDeNOyrQ%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRAIgNLQHaK6o5GmqOCkmTkyQ05s1NmjFgEehbNFIDU1VO1sCIFaS6tdB0eUWfJM6cF6CRc9-Ej_Q6GzbuIHjOTShAxnb&ratebypass=yes"
-          type="audio/mpeg"
-        />
-      </audio>
-      </>
+       
+      </main>
+    </>
   );
 }
 
