@@ -44,12 +44,12 @@ function Mood() {
           }, 
         });
         return res.data.items;
-      },[])
+      },[genreId])
       useEffect(() => {
         playlistChart()
-          .then((data) =>{console.log(data);setmoodlist(p=>{ return {...p,data:data}})})
+          .then((data) =>{setmoodlist(p=>{ return {...p,data:data}})})
           .catch((err) => console.log(err));
-      }, []);
+      }, [playlistChart]);
       const videoIdhandler = (e) => {
         currentPlay.settrackCurrent(e.snippet.resourceId.videoId);
         currentPlay.setcurrentlyPlaying(e.snippet.thumbnails.high.url);

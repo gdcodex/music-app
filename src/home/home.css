@@ -68,7 +68,7 @@
       padding-bottom:16 ;
       height: 100px;
   }
-  @media only screen and (min-width: 2000px) {
+  @media only screen and (min-width: 1920px) {
       .home-body-chart{
           width: 100vw;
           display: flex;
@@ -79,7 +79,27 @@
       }
     .chart-body{
         display: flex;
-        width: 90vw;
+        width: 94vw;
         justify-content: space-between;
     }
+  }
+
+  .home-card{
+      margin: 15px;
+      display: inline-block;
+
+  }
+  .home-card-image{
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+  }
+  .home-card-text{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 150px;
+      height: 15px;
+      color: rgb(99, 98, 98);
+      overflow: hidden;
   }

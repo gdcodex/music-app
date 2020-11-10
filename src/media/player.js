@@ -34,7 +34,7 @@ function Player() {
   
     var config = {
       method: 'get',
-      url: `http://localhost:5000/song/?id=${videoId}`,
+      url: `${process.env.REACT_APP_URL}/song/?id=${videoId}`,
       headers: { }
     };
     
@@ -48,7 +48,7 @@ function Player() {
     .catch(function (error) {
       console.log(error);
     });
-  }, [videoId]);
+  }, [videoId,currentPlay]);
   const sliderChange = (value, newValue) => {
     audio.current.currentTime = newValue;
     setcurrentTime(newValue);

@@ -42,10 +42,9 @@ body{
   }
   .center-wrap{
       padding: 10px;
+      border: 4px solid #FF9100;
       border-radius: 50%;
       background: rgb(255, 255, 255);
-      
-      
   }
   #player-svg{
       width: 250px;
@@ -59,7 +58,7 @@ body{
       bottom: 0;
       width: 100vw;
       background-color: #212121;
-      color: #ffc881;
+      color: #FF9100;
       display: flex;
       align-items: center;
       justify-content: space-around;

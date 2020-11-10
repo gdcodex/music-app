@@ -30,23 +30,26 @@ function Homebody() {
     });
     return res.data.items;
   },[])
-  useEffect(() => {
+  const getMyChart=useCallback(()=>{
     playlistChart(playlistId.hiphop)
-      .then((data) =>{console.log(data);sethomePlaylist(p=>{ return {...p,hiphop:data}})})
-      .catch((err) => console.log(err));
-    playlistChart(playlistId.pop)
-      .then((data) => sethomePlaylist(p=>{ return {...p,pop:data}}))
-      .catch((err) => console.log(err));
-    playlistChart(playlistId.soulfullBolly)
-      .then((data) => sethomePlaylist(p=>{ return {...p,soulfullBolly:data}}))
-      .catch((err) => console.log(err));
-    playlistChart(playlistId.topbolly)
-      .then((data) => sethomePlaylist(p=>{ return {...p,topbolly:data}}))
-      .catch((err) => console.log(err));
-    playlistChart(playlistId.edm)
-      .then((data) => sethomePlaylist(p=>{ return {...p,edm:data}}))
-      .catch((err) => console.log(err));
-  }, []);
+    .then((data) =>{sethomePlaylist(p=>{ return {...p,hiphop:data}})})
+    .catch((err) => console.log(err));
+  playlistChart(playlistId.pop)
+    .then((data) => sethomePlaylist(p=>{ return {...p,pop:data}}))
+    .catch((err) => console.log(err));
+  playlistChart(playlistId.soulfullBolly)
+    .then((data) => sethomePlaylist(p=>{ return {...p,soulfullBolly:data}}))
+    .catch((err) => console.log(err));
+  playlistChart(playlistId.topbolly)
+    .then((data) => sethomePlaylist(p=>{ return {...p,topbolly:data}}))
+    .catch((err) => console.log(err));
+  playlistChart(playlistId.edm)
+    .then((data) => sethomePlaylist(p=>{ return {...p,edm:data}}))
+    .catch((err) => console.log(err));
+  },[])
+  useEffect(() => {
+    getMyChart();
+  }, [getMyChart]);
 
   return <div className="home-body-chart">
   {   !homePlaylist &&

@@ -57,7 +57,7 @@ function Upnext({ videoId,audio,settrack,setTime }) {
       })
       .then((res) => setrelatedVids(res.data.items))
       .catch((err) => console.log(err));
-  }, []);
+  }, [videoId]);
   const classes = useStyles();
   const [state, setState] = React.useState({
     bottom: false,
@@ -69,7 +69,7 @@ function Upnext({ videoId,audio,settrack,setTime }) {
     setload(true)
       var config = {
         method: "get",
-        url: `http://localhost:5000/song/?id=${e.id.videoId}`,
+        url: `${process.env.REACT_APP_URL}/song/?id=${e.id.videoId}`,
         headers: {},
       };
     await  axios(config)
