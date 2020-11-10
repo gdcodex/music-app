@@ -68,7 +68,7 @@
       padding-bottom:16 ;
       height: 100px;
   }
-  @media only screen and (min-width: 1050px) {
+  @media only screen and (min-width: 1730px) {
       .home-body-chart{
           width: 100vw;
           display: flex;

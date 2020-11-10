@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Search() {
   const classes = useStyles();
-
+ const history = useHistory();
   const [song, setsong] = useState("");
   const [Songlist, setSonglist] = useState(null);
   const [Suggestlist, setSuggestlist] = useState(null);
@@ -77,9 +77,7 @@ function Search() {
   return (
     <div key="anh" className="search-container">
       <section  className="text-area">
-      <Link to="/">
-        <ArrowBackIcon fontSize="default" color="secondary"  />
-      </Link>
+        <ArrowBackIcon onClick={()=>{history.goBack()}} fontSize="default" color="secondary"  />
         <TextField
           className={classes.root}
           id="standard-basic"

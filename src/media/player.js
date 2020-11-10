@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import React, {useRef, useEffect, useContext } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Player() {
+  const history = useHistory();
   const classes = useStyles();
   const videoId = useParams().pid;
   const currentPlay = useContext(PlayerContext);
@@ -67,9 +68,9 @@ function Player() {
   };
   return (
     <>
-        <Link to="/" className="back-player-arrow">
-        <ArrowBackIcon fontSize="default" color="secondary"  />
-      </Link>
+        <section className="back-player-arrow">
+        <ArrowBackIcon onClick={()=>{history.goBack()}} fontSize="default" color="secondary"  />
+      </section>
       {!currentPlay.trackCurrent && (
         <Backdrop className={classes.backdrop} open={true}>
           <CircularProgress color="secondary" />

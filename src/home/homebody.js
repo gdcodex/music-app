@@ -17,7 +17,7 @@ function Homebody() {
   const playlistId = {
     pop: "PLDcnymzs18LU4Kexrs91TVdfnplU3I5zs",
     topbolly: "PLcRN7uK9CFpPkvCc-08tWOQo6PAg4u0lA",
-    soulfullBolly: "RDCLAK5uy_mr9NXj7DL7VjL_7C0zszHlT9iM4ylxfV0",
+    soulfullBolly: "RDCLAK5uy_k3wTQsI2LZufyHzovpUHsESjGrxpyixBQ",
     hiphop: "RDCLAK5uy_khpEjaQLgEhJ52L4ceWPOOnlflVYGi8sM",
     edm: "PLw-VjHDlEOgs658kAHR_LAaILBXb-s6Q5",
   };
@@ -25,6 +25,18 @@ function Homebody() {
     const res = await searchapi.get("playlistItems", {
       params: {
         playlistId: data,
+        maxResults:10
+      },
+    });
+    return res.data.items;
+  },[])
+  const trendingChart =useCallback( async () => {
+    const res = await searchapi.get("videos", {
+      params: {
+        chart: "mostPopular",
+        maxResults:10,
+        videoCategoryId: "10",
+        regionCode: "IN"
       },
     });
     return res.data.items;
@@ -39,7 +51,7 @@ function Homebody() {
     playlistChart(playlistId.soulfullBolly)
       .then((data) => sethomePlaylist(p=>{ return {...p,soulfullBolly:data}}))
       .catch((err) => console.log(err));
-    playlistChart(playlistId.topbolly)
+    trendingChart()
       .then((data) => sethomePlaylist(p=>{ return {...p,topbolly:data}}))
       .catch((err) => console.log(err));
     playlistChart(playlistId.edm)
@@ -56,10 +68,11 @@ function Homebody() {
       homePlaylist &&
       <>
       <Chart data={homePlaylist.pop} title="Top Pop"/>
-      <Chart data={homePlaylist.topbolly} title="Top Bollywood"/>
       <Chart data={homePlaylist.hiphop} title="Top Hiphop"/>
-      <Chart data={homePlaylist.soulfullBolly} title="Soulful Bollywood"/>
+      <Chart data={homePlaylist.soulfullBolly} title="Party"/>
       <Chart data={homePlaylist.edm} title="EDM" />
+      <Chart data={homePlaylist.topbolly} title="Trending in India"/>
+      <div className="footer" style={{height:"180px"}}></div>
       </>
   }
     

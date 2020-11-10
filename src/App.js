@@ -6,6 +6,7 @@ import { theme } from "./elements/uielements/controls";
 import Home from "./home/home";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { PlayerContext } from "./endpoints/context";
+import Explore from './explore/explore';
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
@@ -25,6 +26,9 @@ function App() {
     </Route>
     <Route exact path="/search">
       <Search />
+    </Route>
+    <Route exact path="/explore">
+      <Explore/>
     </Route>
     <Route exact path={`/player/:pid`}>
       <Player />
