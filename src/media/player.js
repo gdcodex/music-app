@@ -7,6 +7,8 @@ import { play, pause, next, prev } from "../elements/uielements/controls";
 import "./player.css";
 import Playercenter from "./playercenter";
 import { PlayerContext } from '../endpoints/context';
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import {Link} from 'react-router-dom';
 import SliderControl from "./slider";
 import Upnext from "./upnext";
 import axios from 'axios';
@@ -65,6 +67,9 @@ function Player() {
   };
   return (
     <>
+        <Link to="/" className="back-player-arrow">
+        <ArrowBackIcon fontSize="default" color="secondary"  />
+      </Link>
       {!currentPlay.trackCurrent && (
         <Backdrop className={classes.backdrop} open={true}>
           <CircularProgress color="secondary" />

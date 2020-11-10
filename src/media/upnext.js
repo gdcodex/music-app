@@ -4,6 +4,8 @@ import clsx from "clsx";
 import axios from 'axios';
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
 import searchY from "../endpoints/searchapi";
 import List from "@material-ui/core/List";
@@ -12,7 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import { PlayerContext } from "../endpoints/context";
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
   list: {
     width: 250,
   },
@@ -36,9 +38,14 @@ const useStyles = makeStyles({
     zIndex: 20,
     background: "white",
   },
-});
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 10,
+    color: "#fff",
+  },
+}));
 
 function Upnext({ videoId,audio }) {
+  const [load, setload] = useState(false);
   const [relatedVids, setrelatedVids] = useState(null);
   useEffect(() => {
     searchY
@@ -59,6 +66,7 @@ function Upnext({ videoId,audio }) {
   const history = useHistory();
 
   const videoIdhandler = async(e) => {
+    setload(true)
       var config = {
         method: "get",
         url: `http://localhost:5000/song/?id=${e.id.videoId}`,
@@ -66,6 +74,7 @@ function Upnext({ videoId,audio }) {
       };
     await  axios(config)
         .then(function (response) {
+          setload(false)
           console.log("trackchange")
           history.push(`/player/${e.id.videoId}`);
           currentPlay.settrackCurrent(response.data);
@@ -75,6 +84,7 @@ function Upnext({ videoId,audio }) {
           audio.current.play();
         })
         .catch(function (error) {
+          setload(false)
           console.log(error);
         });
   
@@ -125,6 +135,11 @@ function Upnext({ videoId,audio }) {
   );
   return (
     <div>
+     {load && (
+        <Backdrop className={classes.backdrop} open={true}>
+          <CircularProgress color="secondary" />
+        </Backdrop>
+      )}
       <React.Fragment key={"bottom"}>
         <Button color="secondary" onClick={toggleDrawer("bottom", true)}>
           {"Upnext"}
@@ -144,12 +159,4 @@ function Upnext({ videoId,audio }) {
 
 export default Upnext;
 
-// <List>
-// {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-//   <ListItem button key={text}>
-//     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-//     <ListItemText primary={text} />
-//   </ListItem>
-// ))}
-// </List>
-// <Divider />
+
