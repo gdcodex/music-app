@@ -24,7 +24,7 @@ function Player() {
   const videoId = useParams().pid;
   const currentPlay = useContext(PlayerContext);
   const audio = useRef();
-  const [audS, setaudS] = React.useState(pause);
+  const [audS, setaudS] = React.useState(play);
   const [currentTime, setcurrentTime] = React.useState(0);
   const [volume, setvolume] = React.useState(100);
   const [Time, setTime] = React.useState(0);
@@ -42,6 +42,7 @@ function Player() {
     .then(function (response) {
       // console.log(JSON.stringify(response.data));
       settrack(response.data)
+      setaudS(pause)
       currentPlay.settrackCurrent(response.data);
     })
     .catch(function (error) {
@@ -69,14 +70,16 @@ function Player() {
   return (
     <>
         <section className="back-player-arrow">
+        <div>
         <ArrowBackIcon onClick={()=>{history.goBack()}} fontSize="default" color="secondary"  />
+        </div>
       </section>
-      {!currentPlay.trackCurrent && (
+      {!track && (
         <Backdrop className={classes.backdrop} open={true}>
           <CircularProgress color="secondary" />
         </Backdrop>
       )}
-      {currentPlay.trackCurrent && (
+      {track && (
         <main className="player-body">
           <Playercenter />
           <SliderControl
@@ -93,6 +96,7 @@ function Player() {
           <audio
             ref={audio}
             autoPlay
+            onPlay={()=>{setTime(audio.current.duration)}}
             onEnded={() => setaudS(play)}
             onTimeUpdate={() => {
               setcurrentTime(audio.current.currentTime);
@@ -101,7 +105,7 @@ function Player() {
             <source src={track} type="audio/mpeg" />
           </audio>
           <div className="upnext">
-            <Upnext videoId={videoId} audio={audio} settrack={settrack}/>
+            <Upnext videoId={videoId} audio={audio} settrack={settrack} setTime={setTime}/>
           </div>
         </main>
       )}

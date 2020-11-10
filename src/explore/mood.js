@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Avatar from "@material-ui/core/Avatar";
 import { PlayerContext } from '../endpoints/context';
 
@@ -32,7 +33,8 @@ function Mood() {
     const classes = useStyles();
     const currentPlay = useContext(PlayerContext);
     const history = useHistory();
-    const genreId = useParams().gid;
+    const genreId = useParams().gid.split(" ")[0];
+    const genreTitle = useParams().gid.split(" ")[1];
     const [moodlist, setmoodlist] = useState(null);
     const playlistChart =useCallback( async () => {
         const res = await searchapi.get("playlistItems", {
@@ -55,6 +57,10 @@ function Mood() {
       };
     return (
         <div>
+        <div className="back-mood-arrow">
+          <ArrowBackIcon onClick={()=>{history.goBack()}} fontSize="default" color="secondary"  />
+          <h1>{genreTitle}</h1>
+        </div> 
        {!moodlist &&   <Backdrop className={classes.backdrop} open={true}>
         <CircularProgress color="secondary" />
       </Backdrop>}

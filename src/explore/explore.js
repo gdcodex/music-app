@@ -26,7 +26,7 @@ function Explore() {
       <div className="explore">
         <div className="mood">
           {Moods.map((e, i) => (
-            <Link to={`/explore/${e.id}`} style={{textDecoration:"none"}} key={e.name} className="genres">
+            <Link to={`/explore/${e.id } ${e.name}`} style={{textDecoration:"none"}} key={e.name} className="genres">
               {e.name}
             </Link>
           ))}

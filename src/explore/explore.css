@@ -13,7 +13,15 @@
 #genre-head{
     width: 60px;
 }
-
+.back-mood-arrow{
+    display: flex;
+    width: 210px;
+    align-items: center;
+    justify-content: space-between;
+    transform: translate(30px,30px);
+    cursor: pointer;
+    color: rgb(122, 118, 118);
+}
 .mood{
     width: 60vw;
     margin: auto;
