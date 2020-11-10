@@ -25,7 +25,7 @@ function Homebody() {
     const res = await searchapi.get("playlistItems", {
       params: {
         playlistId: data,
-        maxResults:10
+        maxResults:5
       },
     });
     return res.data.items;

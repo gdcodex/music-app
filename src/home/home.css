@@ -69,7 +69,9 @@
       padding-bottom:16 ;
       height: 100px;
   }
-  @media only screen and (min-width: 1920px) {
+  /* @media only screen and (min-width: 1920px) { */
+ 
+  @media only screen and (min-width: 930px) {
       .home-body-chart{
           width: 100vw;
           display: flex;
@@ -80,10 +82,16 @@
       }
     .chart-body{
         display: flex;
-        width: 94vw;
+        width: 95vw;
         justify-content: space-between;
     }
   }
+  @media only screen and (min-width:1120px) {
+    .chart-body{
+        width: 80vw;
+    }
+
+}
 
   .home-card{
       margin: 15px;
@@ -103,4 +111,9 @@
       height: 15px;
       color: rgb(99, 98, 98);
       overflow: hidden;
+  }
+  .error{
+      color: white;
+      margin-left: 20px;
+      transform: translate(0%,200%);
   }

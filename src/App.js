@@ -3,12 +3,13 @@ import Search from "./elements/search/search";
 import Player from "./media/player";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./elements/uielements/controls";
-import Home from "./home/home";
+// import Home from "./home/home";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { PlayerContext } from "./endpoints/context";
 import Explore from './explore/explore';
 import Mood from './explore/mood';
 import Landing from "./home/landing";
+import './home/home.css'
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
@@ -24,13 +25,13 @@ function App() {
     <Landing/>
     <Router>
     <Switch>
-    <Route exact path="/">
+    {/* <Route exact path="/">
       <Home/>
-    </Route>
+    </Route> */}
     <Route exact path="/search">
       <Search />
     </Route>
-    <Route exact path="/explore">
+    <Route exact path="/">
       <Explore/>
     </Route>
     <Route exact path="/explore/:gid">
