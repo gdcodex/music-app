@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 const useStyles = makeStyles({
     root: {
     borderRadius: '10%',
-    backgroundColor:"rgb(41, 39, 39)"
+    backgroundColor:"black"
     },
   });
 function Playercenter() {
@@ -16,7 +16,7 @@ function Playercenter() {
       <div className="player-center">
       <div className="center-wrap">
       <Card className={classes.root}>
-       <img id="player-svg" src={currentPlay.currentlyPlaying || "https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"} alt="thumbnail"/>
+       <img id="player-svg" src={currentPlay.currentlyPlaying || "/playercenter.png"} alt="thumbnail"/>
         </Card>
       </div>
       </div>

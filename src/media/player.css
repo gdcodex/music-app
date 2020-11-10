@@ -44,7 +44,7 @@ body{
       padding: 10px;
       border-radius: 10%;
       background: rgb(255,255,255);
-      background: linear-gradient(0deg, rgba(255,255,255,1) 14%, rgba(255, 155, 24, 0.863) 100%);
+      
       
   }
   #player-svg{
