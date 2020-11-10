@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { PlayerContext } from "./endpoints/context";
 import Explore from './explore/explore';
 import Mood from './explore/mood';
+import Landing from "./home/landing";
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
@@ -20,6 +21,7 @@ function App() {
       settrackCurrent
     }}>
     <ThemeProvider theme={theme}>
+    <Landing/>
     <Router>
     <Switch>
     <Route exact path="/">

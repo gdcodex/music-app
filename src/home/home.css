@@ -21,6 +21,7 @@
     justify-content: center;
 }
 .top h2{
+    letter-spacing: 3px;
     color: rgb(238, 238, 238);
 }
 #reverb-img{
