@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme)=>({
   },
 }));
 
-function Upnext({ videoId,audio }) {
+function Upnext({ videoId,audio,settrack }) {
   const [load, setload] = useState(false);
   const [relatedVids, setrelatedVids] = useState(null);
   useEffect(() => {
@@ -78,6 +78,7 @@ function Upnext({ videoId,audio }) {
           console.log("trackchange")
           history.push(`/player/${e.id.videoId}`);
           currentPlay.settrackCurrent(response.data);
+          settrack(response.data)
           currentPlay.setcurrentlyPlaying(e.snippet.thumbnails.high.url);
           audio.current.pause();
           audio.current.load();

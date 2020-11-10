@@ -8,7 +8,6 @@ import "./player.css";
 import Playercenter from "./playercenter";
 import { PlayerContext } from '../endpoints/context';
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import {Link} from 'react-router-dom';
 import SliderControl from "./slider";
 import Upnext from "./upnext";
 import axios from 'axios';
@@ -29,7 +28,7 @@ function Player() {
   const [currentTime, setcurrentTime] = React.useState(0);
   const [volume, setvolume] = React.useState(100);
   const [Time, setTime] = React.useState(0);
-  // const [track, settrack] = React.useState(null);
+  const [track, settrack] = React.useState(null);
 
   useEffect(() => {
   
@@ -42,6 +41,7 @@ function Player() {
     axios(config)
     .then(function (response) {
       // console.log(JSON.stringify(response.data));
+      settrack(response.data)
       currentPlay.settrackCurrent(response.data);
     })
     .catch(function (error) {
@@ -98,10 +98,10 @@ function Player() {
               setcurrentTime(audio.current.currentTime);
             }}
           >
-            <source src={currentPlay.trackCurrent} type="audio/mpeg" />
+            <source src={track} type="audio/mpeg" />
           </audio>
           <div className="upnext">
-            <Upnext videoId={videoId} audio={audio}/>
+            <Upnext videoId={videoId} audio={audio} settrack={settrack}/>
           </div>
         </main>
       )}

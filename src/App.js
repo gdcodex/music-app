@@ -7,6 +7,7 @@ import Home from "./home/home";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { PlayerContext } from "./endpoints/context";
 import Explore from './explore/explore';
+import Mood from './explore/mood';
 
 function App() {
   const [currentlyPlaying, setcurrentlyPlaying] = useState(null)
@@ -29,6 +30,9 @@ function App() {
     </Route>
     <Route exact path="/explore">
       <Explore/>
+    </Route>
+    <Route exact path="/explore/:gid">
+      <Mood/>
     </Route>
     <Route exact path={`/player/:pid`}>
       <Player />
