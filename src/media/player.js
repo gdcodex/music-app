@@ -71,7 +71,7 @@ function Player() {
     <>
         <section className="back-player-arrow">
         <div>
-        <ArrowBackIcon onClick={()=>{history.goBack()}} fontSize="default" color="secondary"  />
+        <ArrowBackIcon onClick={()=>history.goBack()} fontSize="default" color="secondary"  />
         </div>
       </section>
       {!track && (
