@@ -5,17 +5,17 @@ import "./explore.css";
 
 function Explore() {
   const Moods = [
-    { name: "Romance", id: "RDCLAK5uy_lg3oz8N53WWmrM60RTjeRy0-NSmf3Qygw" },
-    { name: "Chill", id: "RDCLAK5uy_lRMLObaWWMHaptjA8bFFAwag5Q1tzeouI" },
-    { name: "R&B Soul", id: "RDCLAK5uy_mu-BhJj3yO1OXEMzahs_aJVtNWJwAwFEE" },
-    { name: "Dance & electronics", id: "RDCLAK5uy_kLWIr9gv1XLlPbaDS965-Db4TrBoUTxQ8" },
+    { name: "Bolly Hotlist", id: "RDCLAK5uy_n9Fbdw7e6ap-98_A-8JYBmPv64v-Uaq1g" },
+    { name: "Punjabi", id: "RDCLAK5uy_kuo_NioExeUmw07dFf8BzQ64DFFTlgE7Q" },
+    { name: "Pop", id: "RDCLAK5uy_kmPRjHDECIcuVwnKsx2Ng7fyNgFKWNJFs" },
+    { name: "On the rise", id: "RDCLAK5uy_lLFMLZs5KTup-cTK9zV2YF9guYZt2FolM" },
     { name: "Desi hiphop", id: "RDCLAK5uy_mOvRWCE7v4C98UgkSVh5FTlD3osGjolas" },
-    { name: "Indie", id: "RDCLAK5uy_n17q7_2dwfDqWckpccDyTTkZ-g03jXuII" },
+    { name: "Indie", id: "RDCLAK5uy_m_Ky21OskMNajFwYX9LjbDMVkZ7YcdkH4" },
     { name: "90s", id: "RDCLAK5uy_m3_ta3qbw52SzpnQMqfph0yPeyrBaJN-g" },
-    { name: "Travel", id: "RDCLAK5uy_l8ohbe556smHVTBGt3YcKCsrablXt_BXk" },
-    { name: "Workout & Gym", id: "RDCLAK5uy_mHwfbEzQvvj2WrL9rQCGUyuWAKOdN-Qwg" },
-    { name: "Rock", id: "RDCLAK5uy_mSK4KDaW4wVEem5iUX0kd30a4CigMd47A" },
-    { name: "Malayalam", id: "RDCLAK5uy_nT-zkEpc2x7AVVP0XV9JvHSfkFsOtGMR8" },
+    { name: "Feel good", id: "RDCLAK5uy_nbla9IlAw2OQmPRxOiBYdAl_jtWLDPH9Y" },
+    { name: "Assamese", id: "PL7eDpquJ1XwjQJd3NiBkcfDRwz82vEE7x" },
+    { name: "Hiphop", id: "RDCLAK5uy_kw2wIlEv9llILhO0qoMTLsBBhmjzuibAc" },
+    { name: "Malayalam", id: "RDCLAK5uy_ncdxHWKi1aBSx2MfTb9-Af0b7APn29U2g" },
     { name: "K-pop & asian", id: "RDCLAK5uy_mbWYIhyeB2KyvAnUGjooZ6eAMZUb28sEc" },
   ];
   return (
