@@ -6,7 +6,7 @@ import "./explore.css";
 function Explore() {
   const Moods = [
     { name: "Bolly Hotlist", id: "RDCLAK5uy_n9Fbdw7e6ap-98_A-8JYBmPv64v-Uaq1g" },
-    { name: "Pop", id: "RDCLAK5uy_kmPRjHDECIcuVwnKsx2Ng7fyNgFKWNJFs" },
+    { name: "KPop", id: "RDCLAK5uy_kmPRjHDECIcuVwnKsx2Ng7fyNgFKWNJFs" },
     { name: "On the rise", id: "RDCLAK5uy_lLFMLZs5KTup-cTK9zV2YF9guYZt2FolM" },
     { name: "Desi hiphop", id: "RDCLAK5uy_mOvRWCE7v4C98UgkSVh5FTlD3osGjolas" },
     { name: "Indie", id: "RDCLAK5uy_m_Ky21OskMNajFwYX9LjbDMVkZ7YcdkH4" },
